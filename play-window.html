@@ -48,11 +48,14 @@
 		var step=0;
 		var item=0;
 		function update() {
-			if(item > 10) {
+			if(item > 18) {
 				step++;
 				item=0;
 				loading.x=step * 15;
 				loading.y=290;
+			}
+			if(step > 18) {
+				game.clear();
 			}
 			loading.x += 15;
 			loading.y -= 15;
