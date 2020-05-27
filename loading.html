@@ -35,11 +35,10 @@
 			this.width = width;
 			this.height = height;
 			this.x = x;
-			this.y = y;    
+			this.y = y;
 			this.update = function(){
-				ctx = game.context;
-				ctx.fillStyle = color;
-				ctx.fillRect(this.x, this.y, this.width, this.height);
+				game.context.fillStyle = color;
+				game.context.fillRect(this.x, this.y, this.width, this.height);
 			}
 		}
 		function start() {
