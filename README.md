@@ -2,6 +2,10 @@
 
 A repository to archive trying Canvas in javascript to handle event and methods of canvas.
 
+## Efforts
+
+- Loading ([See demo](https://basemax.github.io/CanvasExerciseJS/loading.html))
+
 ---------
 
 # Max Base
