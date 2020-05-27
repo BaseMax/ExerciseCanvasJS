@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Canvas Excersice</title>
+		<title>Loading - Canvas Excersice</title>
 		<style>
 		* {
 			padding: 0px;
@@ -15,5 +15,46 @@
 	</head>
 	<body>
 		<canvas id="canvas"></canvas>
+		<script>
+		var loading;
+		var game = {
+			canvas: document.querySelector("#canvas"),
+			start: function() {
+				this.canvas.width = 500;
+				this.canvas.height = 300;
+				this.context = this.canvas.getContext("2d");
+				this.interval = setInterval(update, 20);
+			},
+			clear: function() {
+				this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+			}
+		}
+		function shape(width, height, color, x, y) {
+			this.width = width;
+			this.height = height;
+			this.x = x;
+			this.y = y;    
+			this.update = function(){
+				ctx = game.context;
+				ctx.fillStyle = color;
+				ctx.fillRect(this.x, this.y, this.width, this.height);
+			}
+		}
+		function start() {
+			loading = new shape(10, 10, "yellow", 5, 280);
+			game.start();
+		}
+		function update() {
+			if(loading.x > 480) {
+				game.clear();
+				return;
+			}
+			loading.x += 5;
+			loading.update();
+		}
+		window.addEventListener("load", function() {
+			start();
+		});
+		</script>
 	</body>
 </html>
