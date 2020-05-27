@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Taxi Style - Canvas Excersice</title>
+		<style>
+		* {
+			padding: 0px;
+			margin: 0px;
+		}
+		canvas {
+			border: 1px solid gray;
+			background: black;
+		}
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas"></canvas>
+		<script>
+		var loading;
+		var game = {
+			canvas: document.querySelector("#canvas"),
+			start: function() {
+				this.canvas.width = 400;
+				this.canvas.height = 400;
+				this.context = this.canvas.getContext("2d");
+				this.interval = setInterval(update, 20);
+			},
+			clear: function() {
+				this.context.fillStyle = '#ff6';
+				this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
+				// this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+			}
+		}
+		function shape(width, height, color, x, y) {
+			this.width = width;
+			this.height = height;
+			this.x = x;
+			this.y = y;
+			this.update = function(){
+				game.context.fillStyle = color;
+				game.context.fillRect(this.x, this.y, this.width, this.height);
+			}
+		}
+		function start() {
+			loading = new shape(20, 20, "yellow", 0, 0);
+			game.start();
+		}
+		var step=0;
+		var item=0;
+		function update() {
+			loading.update();
+			loading.x += 40;
+			item++;
+			if(item > 20) {
+				item=0;
+				if(step % 2 == 0) {
+					loading.x=20;
+				}
+				else {
+					loading.x=0;
+				}
+				loading.y+=20;
+				step++;
+			}
+			if(step > 20) {
+				game.clear();
+			}
+		}
+		window.addEventListener("load", function() {
+			start();
+		});
+		</script>
+	</body>
+</html>
