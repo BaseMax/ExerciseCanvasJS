@@ -1,1 +1,67 @@
-
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Play Window - Canvas Excersice</title>
+		<style>
+		* {
+			padding: 0px;
+			margin: 0px;
+		}
+		canvas {
+			border: 1px solid gray;
+			background: black;
+		}
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas"></canvas>
+		<script>
+		var loading;
+		var game = {
+			canvas: document.querySelector("#canvas"),
+			start: function() {
+				this.canvas.width = 300;
+				this.canvas.height = 300;
+				this.context = this.canvas.getContext("2d");
+				this.interval = setInterval(update, 20);
+			},
+			clear: function() {
+				this.context.fillStyle = '#ff6';
+				this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
+				// this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+			}
+		}
+		function shape(width, height, color, x, y) {
+			this.width = width;
+			this.height = height;
+			this.x = x;
+			this.y = y;
+			this.update = function(){
+				game.context.fillStyle = color;
+				game.context.fillRect(this.x, this.y, this.width, this.height);
+			}
+		}
+		function start() {
+			loading = new shape(10, 10, "yellow", 0, 290);
+			game.start();
+		}
+		var step=0;
+		var item=0;
+		function update() {
+			if(item > 10) {
+				step++;
+				item=0;
+				loading.x=step * 15;
+				loading.y=290;
+			}
+			loading.x += 15;
+			loading.y -= 15;
+			item++;
+			loading.update();
+		}
+		window.addEventListener("load", function() {
+			start();
+		});
+		</script>
+	</body>
+</html>
