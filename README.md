@@ -8,6 +8,7 @@ A repository to archive trying Canvas in javascript to handle event and methods 
 - Loading Progress ([See demo](https://basemax.github.io/ExerciseCanvasJS/loading-progress.html))
 - Play Window ([See demo](https://basemax.github.io/ExerciseCanvasJS/play-window.html))
 - Taxi Style ([See demo](https://basemax.github.io/ExerciseCanvasJS/taxi-style.html))
+- Chess Board ([See demo](https://basemax.github.io/ExerciseCanvasJS/chess-board.html))
 
 ---------
 
