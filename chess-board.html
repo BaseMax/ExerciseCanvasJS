@@ -24,7 +24,7 @@
 				this.canvas.width = 400;
 				this.canvas.height = 400;
 				this.context = this.canvas.getContext("2d");
-				// this.interval = setInterval(update, 20);
+				this.interval = setInterval(update, 20);
 			},
 			clear: function() {
 				this.context.fillStyle = '#ff6';
@@ -48,38 +48,26 @@
 		}
 		var item=1;
 		function draw(x, y) {
+			if(x > 400 || y > 400 || x < 0 || y < 0) {
+				return;
+			}
 			console.log("Draw: "+x+","+y);
 			loading.x=x;
 			loading.y=y;
 			loading.update();
 		}
+		var n=0;
+		var m=0;
 		function update() {
-			for(let n=0;n<=((400/40)*38)*2;n+=40) {
-				for(let m=0;m<=n*20;m+=20) {
-					setTimeout(function() {
-						draw(m, n-m);
-					}, 100);
-				}
+			if(n>((400/40)*38)*2) {
+				game.clear();
 			}
-			// draw(0, 0);
-
-			// draw(0, 40);
-			// draw(20, 20);
-			// draw(40, 0);
-
-			// draw(0, 80);
-			// draw(20, 60);
-			// draw(40, 40);
-			// draw(60, 20);
-			// draw(80, 0);
-
-			// draw(0, 120);
-			// draw(20, 100);
-			// draw(40, 80);
-			// draw(60, 60);
-			// draw(80, 40);
-			// draw(100, 20);
-			// draw(120, 0);
+			draw(m, n-m);
+			m+=20;
+			if(m>n*20) {
+				n+=40;
+				m=0;
+			}
 		}
 		window.addEventListener("load", function() {
 			start();
