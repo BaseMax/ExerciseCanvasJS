@@ -1,7 +1,8 @@
+
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Play Window - Canvas Excersice</title>
+		<title>Chess Board - Canvas Excersice</title>
 		<style>
 		* {
 			padding: 0px;
@@ -23,7 +24,7 @@
 				this.canvas.width = 400;
 				this.canvas.height = 400;
 				this.context = this.canvas.getContext("2d");
-				this.interval = setInterval(update, 20);
+				// this.interval = setInterval(update, 20);
 			},
 			clear: function() {
 				this.context.fillStyle = '#ff6';
@@ -45,30 +46,44 @@
 			loading = new shape(20, 20, "yellow", 0, 0);
 			game.start();
 		}
-		var step=0;
-		var item=0;
-		function update() {
+		var item=1;
+		function draw(x, y) {
+			console.log("Draw: "+x+","+y);
+			loading.x=x;
+			loading.y=y;
 			loading.update();
-			loading.x += 20;
-			loading.y += 20;
-			item++;
-			if(item > 20) {
-				item=0;
-				if(step % 2 == 0) {
-					loading.x=40;
+		}
+		function update() {
+			for(let n=0;n<=((400/40)*38)*2;n+=40) {
+				for(let m=0;m<=n*20;m+=20) {
+					setTimeout(function() {
+						draw(m, n-m);
+					}, 100);
 				}
-				else {
-					loading.x=0;
-				}
-				loading.y+=20;
-				step++;
 			}
-			if(step > 20) {
-				game.clear();
-			}
+			// draw(0, 0);
+
+			// draw(0, 40);
+			// draw(20, 20);
+			// draw(40, 0);
+
+			// draw(0, 80);
+			// draw(20, 60);
+			// draw(40, 40);
+			// draw(60, 20);
+			// draw(80, 0);
+
+			// draw(0, 120);
+			// draw(20, 100);
+			// draw(40, 80);
+			// draw(60, 60);
+			// draw(80, 40);
+			// draw(100, 20);
+			// draw(120, 0);
 		}
 		window.addEventListener("load", function() {
 			start();
+			update();
 		});
 		</script>
 	</body>
